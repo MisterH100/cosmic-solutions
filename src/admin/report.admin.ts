@@ -66,6 +66,16 @@ export const loadUserReport = () => {
               <h2 class="label">Describe The Issue</h2>
               <textarea id="description"></textarea>
             </div>
+          <div class="file-input">
+                <h2 class="label">Upload Image</h2>
+            <div class="file-wrapper">
+              <input type="file" id="report-image">
+              <div class="file-preview">
+                <img src="/paper.png" id="preview"/>
+              </div>
+
+            </div>
+          </div>
             <div class="action-btns">
               <button class="btn-submit" id="btn-submit">Submit Report</button>
               <button class="btn-cancel" id="btn-cancel">Cancel</button>
@@ -98,7 +108,31 @@ const pcNumber = document.getElementById("pc-number") as HTMLInputElement;
 const roomNumber = document.getElementById("room-number") as HTMLInputElement;
 const cats = document.getElementsByName("category") as NodeListOf<HTMLInputElement>;
 const description = document.getElementById("description") as HTMLTextAreaElement;
+const reportImage = document.getElementById("report-image") as HTMLInputElement;
+const preview = document.getElementById("preview") as HTMLImageElement;
 let category = "";
+
+const renderPreview = () => {
+  if (preview.getAttribute("src") == "/paper.png") {
+    preview.style.opacity = "0.3";
+  } else {
+    preview.style.opacity = "1";
+  }
+
+  let files = reportImage.files as FileList;
+  if (files.length > 0) {
+    let src = URL.createObjectURL(files[0]);
+    preview.src = src
+    preview.style.opacity = "1";
+  }
+}
+
+renderPreview();
+
+reportImage.addEventListener("change", (e) => {
+  e.preventDefault();
+  renderPreview()
+});
 
 submitBtn?.addEventListener("click", async (e) => {
   e.preventDefault();
@@ -124,10 +158,14 @@ submitBtn?.addEventListener("click", async (e) => {
 
   let tokenNumber = getRandomIntInclusive(10, 99).toString() + getRandomIntInclusive(10, 99).toString()
 
+  let formData = new FormData();
+  let files = reportImage.files as FileList;
+
   const data = {
     tokenID: tokenNumber,
     category: category,
     description: description.value,
+    file: files[0],
     status: "open",
     technician: adminDetails.clearance_level > 0 ? adminDetails.email : "",
     submittedOn: new Date().toLocaleString("en-ZA", { month: "long", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: false }).toLowerCase(),
@@ -137,7 +175,11 @@ submitBtn?.addEventListener("click", async (e) => {
     room: roomNumber.value
   }
 
-  const res = await createReport(Endpoints.createReportUrl, data);
+  for (const [key, value] of Object.entries(data)) {
+    formData.append(key, value)
+  }
+
+  const res = await createReport(Endpoints.createReportUrl, formData);
   if (!res?.ok) {
     return
   } else {
@@ -156,6 +198,8 @@ cancelBtn?.addEventListener("click", (e) => {
   pcNumber.value = ""
   roomNumber.value = ""
   description.value = ""
+  preview.src = "/paper.png"
+  preview.style.opacity = "0.3";
 
 })
 

@@ -124,11 +124,9 @@ export const createReport = async (url: string, data: any) => {
     const response = await fetch(url, {
       method: "POST",
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
       },
-      body: JSON.stringify(data),
+      body: data,
       signal
     });
 

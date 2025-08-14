@@ -153,6 +153,9 @@ const loadDetails = async (detailsID: string) => {
     </div>
     <div class="info-body">
       <p>${report?.description}</p>
+      <div class="info-image">
+        <img id ="infoImage" src="/paper.png"/>
+      </div>
     </div>
     `
     reportPcNo.innerHTML = report?.pc;

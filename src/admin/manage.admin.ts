@@ -153,6 +153,9 @@ const loadDetails = async (detailsID: string) => {
     </div>
     <div class="info-body">
       <p>${report?.description}</p>
+      <div class="info-image">
+        <img src="/paper.png"/>
+      </div>
     </div>
 `
   if (report?.status == "resolved" && !checkDelClearance(adminDetails.clearance_level)) {
