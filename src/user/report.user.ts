@@ -157,7 +157,7 @@ submitBtn?.addEventListener("click", async (e) => {
     file: files[0],
     status: "open",
     technician: "",
-    submittedOn: new Date().toLocaleString("en-ZA", { month: "long", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: false }).toLowerCase(),
+    submittedOn: new Date().toLocaleString("en-ZA", { month: "long", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: true }).toLowerCase(),
     submittedBy: "user",
     notes: "",
     pc: userDetails.pc,

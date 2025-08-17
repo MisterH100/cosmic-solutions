@@ -7,6 +7,7 @@
 .wrapper {
   width: 70%;
   min-height: 100vh;
+  padding: 12px 32px;
   background: var(--background);
   margin-top: 24px;
 }

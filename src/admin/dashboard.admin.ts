@@ -156,6 +156,7 @@ export const loadAdminDash = () => {
       <h1>Report Overview</h1>
       <h2 class="chart-subheading"></h2>
       <div class="chart-container">
+      <canvas id="grid"></canvas>
       <div class="chart-info">
         <div class="bar">
           <span id="bar-open"></span>
@@ -208,6 +209,30 @@ const barInprogress = document.getElementById("bar-inprogress") as HTMLElement;
 const barResolved = document.getElementById("bar-resolved") as HTMLElement;
 const chartSubHeading = document.querySelector(".chart-subheading") as HTMLElement;
 const techsWrapper = document.querySelector(".tech-wrapper") as HTMLElement;;
+const gridCanvas = document.getElementById("grid") as HTMLCanvasElement;
+const ctx = gridCanvas.getContext("2d") as CanvasRenderingContext2D;
+
+const drawGrid = () => {
+  const cellSize = 10;
+  const canvasWidth = gridCanvas.width;
+  const canvasHeight = gridCanvas.height;
+
+  for (let x = 0; x <= canvasWidth; x += cellSize) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, canvasHeight);
+    ctx.lineWidth = 0.1
+    ctx.stroke();
+  }
+
+  for (let y = 0; y <= canvasHeight; y += cellSize) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(canvasWidth, y);
+    ctx.lineWidth = 0.1
+    ctx.stroke();
+  }
+}
 
 const loadReports = async (filter: string) => {
   tableBody?.replaceChildren("")
@@ -440,6 +465,7 @@ filterBtns.forEach((btn) => {
 headerActions();
 sidebarActions();
 loadStats();
+drawGrid();
 
 socket.on("updateReports", () => {
   loadReports("all");
