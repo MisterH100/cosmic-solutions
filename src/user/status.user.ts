@@ -154,7 +154,8 @@ const loadDetails = async (detailsID: string) => {
     <div class="info-body">
       <p>${report?.description}</p>
       <div class="info-image">
-        <img id ="infoImage" src="/paper.png"/>
+        <h1>Report Image</h1>
+        <img id ="infoImage" src=${report.file}>
       </div>
     </div>
     `

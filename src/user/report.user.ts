@@ -170,6 +170,7 @@ submitBtn?.addEventListener("click", async (e) => {
 
   const res = await createReport(Endpoints.createReportUrl, formData);
   if (!res?.ok) {
+    spinnerActionsRemove()
     return
   } else {
     popUp("Success", `<p>TokenID: ${tokenNumber}</p>`)

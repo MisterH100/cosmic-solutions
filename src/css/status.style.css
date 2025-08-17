@@ -88,9 +88,8 @@
 }
 
 .info-image img {
-  width:70%;
-  height:70%;
-  opacity: 0.3;
+  width: 100%;
+  height: 70%;
 }
 .search-form {
   margin-top: 24px;
