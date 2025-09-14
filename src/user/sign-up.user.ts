@@ -30,9 +30,9 @@ const loadRegisterPage = () => {
                     <button type="submit" id="user-submit">Sign Up</button>
                   </form>
                   </div>
-                <div>
-                  <p class="signuptext">Already Signed Up?</p>
-                  <p class="signuptext"><a href="/">Log In Now</a> and Report your computer problem</p>
+                <div class="signuptext">
+                  <p>Already Signed Up?</p>
+                  <p><a href="/">Log In Now</a> and Report your computer problem</p>
                 </div>
             </div>
             <div class="content right">

@@ -84,7 +84,7 @@ export const loadAdminDash = () => {
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" id="cosmos-card">
         <div class="title">
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="currentColor">
@@ -193,6 +193,7 @@ dasboardPage.innerHTML += loadSidebar()
 dasboardPage.innerHTML += loadAdminDash();
 dasboardPage.innerHTML += loadSpinner();
 
+const cosmosCard = document.getElementById("cosmos-card");
 const tableBody = document.getElementById("tbody") as HTMLTableElement;
 const regBtn = document.getElementById("btn-reg");
 const addBtn = document.getElementById("btn-add-ticket");
@@ -434,6 +435,7 @@ const loadStats = async () => {
 
 }
 
+
 searchBtn?.addEventListener("click", (e) => {
   e.preventDefault();
   search();
@@ -443,6 +445,14 @@ if (adminDetails.clearance_level > 0) {
   regBtn?.setAttribute("disabled", "")
 }
 
+if (cosmosCard) {
+  cosmosCard.style.cursor = "pointer"
+  cosmosCard.addEventListener("click", (e) => {
+    e.preventDefault()
+    window.location.href = "../pages/cosmos.admin.html"
+  })
+
+}
 regBtn?.addEventListener("click", () => {
   window.location.href = "../pages/register.admin.html"
 })
