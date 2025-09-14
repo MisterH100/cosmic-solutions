@@ -13,6 +13,7 @@ export default defineConfig({
         admindash: resolve(__dirname, "./src/pages/dashboard.admin.html"),
         manage: resolve(__dirname, "./src/pages/manage.admin.html"),
         register: resolve(__dirname, "./src/pages/register.admin.html"),
+        cosmos: resolve(__dirname, "./src/pages/cosmos.admin.html"),
         signUp: resolve(__dirname, "./src/pages/sign-up.user.html"),
         userdash: resolve(__dirname, "./src/pages/dashboard.user.html"),
         userreport: resolve(__dirname, "./src/pages/report.user.html"),
